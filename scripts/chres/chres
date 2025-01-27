@@ -1,0 +1,17 @@
+#!/bin/sh
+
+pgrep -x dmenu && exit
+
+screen=$(xrandr | grep connected | dmenu -p "Choose Display" | awk '{print $1}')
+
+[[ $screen = "" ]] && exit 1
+
+res=$(xrandr | dmenu -p "Choose resolution under selected display $screen" | awk '{print $1}')
+
+[[ $res = "" ]] && exit 1
+
+exec setbg &
+
+xrandr --output $screen --mode $res && echo | dmenu -p "Resolution changed."
+
+

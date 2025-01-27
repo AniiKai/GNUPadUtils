@@ -1,0 +1,33 @@
+GNUPad utils, a set of dmenu based shell scripts to make your life easier!
+
+Dependencies: Dmenu, feh, mupdf
+
+Scripts: change below program attributes by modifying the installation script
+
+install.sh - install all below utils and their configuration files
+
+chbg - change your default desktop background.
+
+	chbg will look for Photos in ~/Documents/Photos/
+	specified in ~/.config/chbg/.conf
+
+setbg - use feh to apply chbg set background
+
+	path to current desktop wallpaper stored in
+	~/.config/setbg/.conf
+
+runpdf - easily open a pdf in mupdf
+
+	runpdf will look for pdf's in ~/Documents/pdfs/ and ~/Downloads/
+	specified in ~/.config/runpdf/.conf
+
+mount-usb - mount a usb 
+
+	mount-usb will create and mount to directories located in ~/usb/
+	to change this, modify the script in scripts/mount-usb/ and then reinstall
+
+umount-usb - unmount a usb
+
+chres - change screen resolution
+
+

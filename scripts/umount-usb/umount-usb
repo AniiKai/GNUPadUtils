@@ -1,0 +1,10 @@
+#!/bin/sh
+drives=$(lsblk -lp | grep "t /home/blade/usb/" | awk '{print $1, "(" $4 ")", "on " $7}')
+[[ "$drives" = "" ]] && exit 
+chosen=$(echo "$drives" | dmenu -i -p "Unmount select drive.")
+chosenDrive=$(echo "$chosen" | awk '{print $1}')
+chosenPath=$(echo "$chosen" | awk '{print $4}')
+[[ "$chosenDrive" = "" ]] && exit
+sudo umount $chosenDrive && echo "" | dmenu -p "Drive $chosenDrive unmounted. Enter to exit."
+rmdir $chosenPath
+

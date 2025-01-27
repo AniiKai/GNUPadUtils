@@ -1,0 +1,18 @@
+#!/bin/sh
+
+pgrep -x dmenu && exit # exit if dmenu is already open
+
+devices=$(lsblk -lp | grep "part $" | awk '{print $1, "(" $4 ")"}')
+
+[[ "$devices" = "" ]] && exit 1
+chosen=$(echo "$devices" | dmenu -i -p "Mount which drive?" | awk '{print $1}')
+[[ "$chosen" = "" ]] && exit 0
+mountpoint=$(echo "Input create directory in $(find ~/usb/ -type d -maxdepth 1 2>/dev/null)" | dmenu -i -p "Type in mount point.")
+[[ "$mountpoint" = "" ]] && exit 1
+mountpoint="/home/blade/usb/$mountpoint"
+if [[ ! -d "$mountpoint" ]]; then
+	mkdir -p "$mountpoint"
+fi
+sudo mount $chosen $mountpoint && echo "" | dmenu -i -p "Drive $chosen mounted to $mountpoint. Enter to exit"
+
+

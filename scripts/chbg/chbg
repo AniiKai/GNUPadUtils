@@ -1,0 +1,5 @@
+#!/bin/sh
+file=$(find ~/$(< ~/.config/chbg/.conf) | dmenu -l 30)
+if [[ file = "" ]] && exit
+echo "$file" > ~/.config/setbg/.conf
+exec setbg &

@@ -1,0 +1,3 @@
+#!/bin/sh
+location=$(< ~/.config/setbg/.conf)
+feh --no-fehbg --bg-fill $location
