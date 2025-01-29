@@ -1,4 +1,4 @@
 #!/bin/sh
 curr_dir=$(cat ~/.config/runpdf/.conf | dmenu -l 5)
-if [[ curr_dir = "" ]] && exit
+[[ curr_dir = "" ]] && exit
 cd ~/$curr_dir  && ls *.pdf | dmenu -l 30 | xargs -d '\n' mupdf
