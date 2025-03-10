@@ -1,12 +1,12 @@
 #!/bin/sh
 
-pgrep -x dmenu && exit
+pgrep -x dmenu -l 10 && exit
 
-screen=$(xrandr | grep connected | dmenu -p "Choose Display" | awk '{print $1}')
+screen=$(xrandr | grep connected | dmenu -p "Choose Display" -l 10 | awk '{print $1}')
 
 [[ $screen = "" ]] && exit 1
 
-res=$(xrandr | dmenu -p "Choose resolution under selected display $screen" | awk '{print $1}')
+res=$(xrandr | dmenu -p "Choose resolution under selected display $screen" -l 10 | awk '{print $1}')
 
 [[ $res = "" ]] && exit 1
 
